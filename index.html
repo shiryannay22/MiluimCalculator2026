@@ -4068,6 +4068,24 @@ if('serviceWorker' in navigator){
   });
 }
 </script>
+
+<style>
+/* Prevent nagishli from overlapping install banner */
+#NagishLiTrigger { transition: bottom .3s ease !important; }
+</style>
+<script>
+window.addEventListener('load', function(){
+  var banner = document.getElementById('install-banner');
+  if(!banner) return;
+  var obs = new MutationObserver(function(){
+    var el = document.getElementById('NagishLiTrigger');
+    if(!el) return;
+    var hidden = banner.style.transform === 'translateY(100%)' || banner.style.opacity === '0';
+    el.style.bottom = hidden ? '10px' : '75px';
+  });
+  obs.observe(banner, {attributes: true, attributeFilter: ['style']});
+});
+</script>
 <script>nagishli_config={language:"he",color:"blue"};</script>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="nagishli_beta.js?v=3.0b" charset="utf-8"></script>
