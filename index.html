@@ -4127,17 +4127,12 @@ if('serviceWorker' in navigator){
   var isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
   var isSafari = /safari/i.test(navigator.userAgent) && !/chrome|crios|fxios/i.test(navigator.userAgent);
   var isStandalone = window.navigator.standalone === true;
-  var dismissed = localStorage.getItem('ios-banner-dismissed');
-  if(isIOS && isSafari && !isStandalone && !dismissed){
+  var isPreview = location.search.indexOf('preview-ios') >= 0;
+  if(isPreview || (isIOS && isSafari && !isStandalone)){
     setTimeout(function(){
       var b = document.getElementById('ios-install-banner');
       if(b) b.style.display = 'block';
-    }, 3000);
-    document.getElementById('ios-install-banner').addEventListener('click', function(e){
-      if(e.target.tagName === 'BUTTON'){
-        localStorage.setItem('ios-banner-dismissed','1');
-      }
-    });
+    }, isPreview ? 500 : 3000);
   }
 })();
 </script>
