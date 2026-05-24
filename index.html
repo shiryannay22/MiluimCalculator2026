@@ -4178,6 +4178,23 @@ window.addEventListener('load', function(){
   setTimeout(updateEnablePos, 4000);
 });
 </script>
+
+<style id="enable-position">
+/* Force enable.co.il button to bottom right */
+#enable-btn,
+.enable-btn,
+#enableBtn,
+[id^="enable-accessibility"],
+div[class*="enable"] > button,
+#enable-page-widget {
+  position: fixed !important;
+  bottom: 16px !important;
+  right: 16px !important;
+  left: auto !important;
+  top: auto !important;
+  z-index: 9990 !important;
+}
+</style>
 <script src="https://cdn.enable.co.il/licenses/enable-L55312uwevscqlel-0526-82271/init.js"></script>
 </body>
 </html>
