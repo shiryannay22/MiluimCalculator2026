@@ -1,4 +1,4 @@
-const CACHE = 'miluim-v38';
+const CACHE = 'miluim-v39';
 
 self.addEventListener('install', e => {
   e.waitUntil(

@@ -4136,6 +4136,48 @@ if('serviceWorker' in navigator){
   }
 })();
 </script>
-  <script src="https://cdn.enable.co.il/licenses/enable-L55312uwevscqlel-0526-82271/init.js"></script>
+  
+<style>
+/* Lift enable button above install banner */
+#enable-btn, .enable-btn, [id*="enable"][class*="btn"],
+div[id^="enable"] > button:first-child,
+#enableBtn { transition: bottom .3s ease !important; }
+</style>
+<script>
+window.addEventListener('load', function(){
+  var banner = document.getElementById('install-banner');
+  var iosBanner = document.getElementById('ios-install-banner');
+  if(!banner && !iosBanner) return;
+
+  function updateEnablePos(){
+    // Try common enable.co.il button selectors
+    var btn = document.getElementById('enable-btn') ||
+              document.querySelector('[id*="enable"] button') ||
+              document.querySelector('.enable-accessibility-btn') ||
+              document.querySelector('[class*="enable"][class*="btn"]');
+    if(!btn) return;
+
+    var androidVisible = banner &&
+      banner.style.transform !== 'translateY(100%)' &&
+      banner.style.opacity !== '0';
+    var iosVisible = iosBanner && iosBanner.style.display === 'block';
+
+    btn.style.bottom = (androidVisible || iosVisible) ? '80px' : '';
+  }
+
+  if(banner){
+    new MutationObserver(updateEnablePos)
+      .observe(banner, {attributes:true, attributeFilter:['style']});
+  }
+  if(iosBanner){
+    new MutationObserver(updateEnablePos)
+      .observe(iosBanner, {attributes:true, attributeFilter:['style']});
+  }
+
+  // Also check after enable widget loads
+  setTimeout(updateEnablePos, 4000);
+});
+</script>
+<script src="https://cdn.enable.co.il/licenses/enable-L55312uwevscqlel-0526-82271/init.js"></script>
 </body>
 </html>
