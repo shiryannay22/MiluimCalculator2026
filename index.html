@@ -4179,22 +4179,92 @@ window.addEventListener('load', function(){
 });
 </script>
 
-<style id="enable-position">
-/* Force enable.co.il button to bottom right */
-#enable-btn,
-.enable-btn,
-#enableBtn,
-[id^="enable-accessibility"],
-div[class*="enable"] > button,
-#enable-page-widget {
-  position: fixed !important;
-  bottom: 16px !important;
-  right: 16px !important;
-  left: auto !important;
-  top: auto !important;
-  z-index: 9990 !important;
-}
-</style>
+<script>
+(function(){
+  function fixEnableBtn(){
+    // enable.co.il creates a fixed element - find it by position/class
+    var allFixed = document.querySelectorAll('*');
+    for(var i=0;i<allFixed.length;i++){
+      var el = allFixed[i];
+      var style = window.getComputedStyle(el);
+      if(style.position === 'fixed' &&
+         el.id !== 'install-banner' &&
+         el.id !== 'ios-install-banner' &&
+         el.id !== 'splash' &&
+         !el.closest('#install-banner') &&
+         !el.closest('#ios-install-banner') &&
+         (el.tagName === 'BUTTON' || el.tagName === 'A' ||
+          (el.children.length <= 3 && el.offsetWidth < 100))){
+        el.style.setProperty('bottom','16px','important');
+        el.style.setProperty('right','16px','important');
+        el.style.setProperty('top','auto','important');
+        el.style.setProperty('left','auto','important');
+      }
+    }
+  }
+  // Wait for enable script to load and create elements
+  var obs = new MutationObserver(function(muts){
+    muts.forEach(function(m){
+      if(m.addedNodes.length) fixEnableBtn();
+    });
+  });
+  obs.observe(document.body, {childList:true, subtree:true});
+  // Also run after delay
+  setTimeout(fixEnableBtn, 2000);
+  setTimeout(fixEnableBtn, 5000);
+})();
+</script>
+
+<script>
+// Force enable.co.il button to bottom-right
+(function(){
+  function fixEnablePos(){
+    // Try all possible enable widget containers
+    var selectors = [
+      '#enable-page-widget',
+      '#enable-btn',
+      '.enable-accessibility-btn',
+      '[id*="enable"][style*="fixed"]',
+      '[class*="enable"][style*="fixed"]'
+    ];
+    for(var i=0;i<selectors.length;i++){
+      var el = document.querySelector(selectors[i]);
+      if(el){
+        el.style.setProperty('bottom','16px','important');
+        el.style.setProperty('right','16px','important');
+        el.style.setProperty('left','auto','important');
+        el.style.setProperty('top','auto','important');
+        return true;
+      }
+    }
+    // Also try shadow DOM hosts
+    var all = document.querySelectorAll('*');
+    for(var j=0;j<all.length;j++){
+      var s = all[j].style;
+      if(s && s.position === 'fixed' && all[j].id && all[j].id.indexOf('enable')>=0){
+        all[j].style.setProperty('bottom','16px','important');
+        all[j].style.setProperty('right','16px','important');
+        all[j].style.setProperty('left','auto','important');
+        all[j].style.setProperty('top','auto','important');
+        return true;
+      }
+    }
+    return false;
+  }
+
+  // Watch for enable widget to appear
+  var obs = new MutationObserver(function(){
+    if(fixEnablePos()) obs.disconnect();
+  });
+  obs.observe(document.body, {childList:true, subtree:true, attributes:true});
+
+  // Also try at intervals as fallback
+  var tries = 0;
+  var interval = setInterval(function(){
+    if(fixEnablePos() || ++tries > 20) clearInterval(interval);
+  }, 500);
+})();
+</script>
 <script src="https://cdn.enable.co.il/licenses/enable-L55312uwevscqlel-0526-82271/init.js"></script>
 </body>
 </html>
