@@ -53,64 +53,14 @@
 </style>
 </head>
 <body>
-<div id="root"></div>
 <div id="install-banner" style="display:flex;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#fff;border-top:1px solid #DDE1E8;padding:12px 16px;align-items:center;gap:12px;direction:rtl;font-family:Assistant,sans-serif;transform:translateY(100%);transition:transform .3s ease,opacity .3s ease;opacity:0;">
   <div style="flex:1"><div style="font-weight:700;font-size:14px;color:#1A2230">התקן את האפליקציה</div><div style="font-size:12px;color:#6B7280">גישה מהירה מהמסך הראשי</div></div>
   <button onclick="installApp()" style="background:#F5C400;color:#1A2230;border:none;border-radius:20px;padding:8px 18px;font-weight:700;font-size:14px;cursor:pointer;">התקן</button>
   <button onclick="document.getElementById('install-banner').style.transform='translateY(100%)'" style="background:none;border:none;font-size:20px;cursor:pointer;color:#6B7280">×</button>
 </div>
 
-<div id="ios-install-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:10000;padding:16px 20px 32px;background:#fff;border-top:1px solid #DDE1E8;border-radius:20px 20px 0 0;box-shadow:0 -4px 24px rgba(26,34,48,0.12);font-family:Assistant,sans-serif;direction:rtl;">
-  <button onclick="document.getElementById('ios-install-banner').style.display='none'" style="position:absolute;top:12px;left:16px;background:none;border:none;font-size:22px;color:#6B7280;cursor:pointer;line-height:1;">×</button>
-  <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
-    <div style="width:44px;height:44px;background:#F5C400;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A2230" stroke-width="2.5"><rect x="5" y="2" width="14" height="20" rx="3"/><line x1="9" y1="7" x2="15" y2="7"/><line x1="9" y1="11" x2="15" y2="11"/><line x1="9" y1="15" x2="12" y2="15"/></svg>
-    </div>
-    <div>
-      <div style="font-weight:800;font-size:15px;color:#1A2230;">הוספת האפליקציה למסך הבית</div>
-      <div style="font-size:12px;color:#6B7280;margin-top:2px;">גישה מהירה בלי לפתוח דפדפן</div>
-    </div>
-  </div>
-  <div style="display:flex;flex-direction:column;gap:10px;">
-    <div style="display:flex;align-items:center;gap:12px;background:#F5F7FA;border-radius:12px;padding:10px 14px;">
-      <div style="width:28px;height:28px;background:#1A2230;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-weight:800;font-size:13px;color:#F5C400;">1</div>
-      <div style="font-size:13px;color:#1A2230;font-weight:600;">לחצי על
-        <svg style="display:inline;vertical-align:middle;margin:0 3px;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#007AFF" stroke-width="2.2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
-        בתחתית Safari
-      </div>
-    </div>
-    <div style="display:flex;align-items:center;gap:12px;background:#F5F7FA;border-radius:12px;padding:10px 14px;">
-      <div style="width:28px;height:28px;background:#1A2230;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-weight:800;font-size:13px;color:#F5C400;">2</div>
-      <div style="font-size:13px;color:#1A2230;font-weight:600;">בחרי <span style="color:#007AFF;">"הוסף למסך הבית"</span> ← <span style="color:#007AFF;">"הוסף"</span></div>
-    </div>
-  </div>
-</div>
 
-<div id="ios-install-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:10000;padding:16px 20px 32px;background:#fff;border-top:1px solid #DDE1E8;border-radius:20px 20px 0 0;box-shadow:0 -4px 24px rgba(26,34,48,0.12);font-family:Assistant,sans-serif;direction:rtl;">
-  <button onclick="document.getElementById('ios-install-banner').style.display='none'" style="position:absolute;top:12px;left:16px;background:none;border:none;font-size:22px;color:#6B7280;cursor:pointer;line-height:1;">×</button>
-  <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
-    <div style="width:44px;height:44px;background:#F5C400;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A2230" stroke-width="2.5"><rect x="5" y="2" width="14" height="20" rx="3"/><line x1="9" y1="7" x2="15" y2="7"/><line x1="9" y1="11" x2="15" y2="11"/><line x1="9" y1="15" x2="12" y2="15"/></svg>
-    </div>
-    <div>
-      <div style="font-weight:800;font-size:15px;color:#1A2230;">הוספת האפליקציה למסך הבית</div>
-      <div style="font-size:12px;color:#6B7280;margin-top:2px;">גישה מהירה בלי לפתוח דפדפן</div>
-    </div>
-  </div>
-  <div style="display:flex;flex-direction:column;gap:10px;">
-    <div style="display:flex;align-items:center;gap:12px;background:#F5F7FA;border-radius:12px;padding:10px 14px;">
-      <div style="width:28px;height:28px;background:#1A2230;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-weight:800;font-size:13px;color:#F5C400;">1</div>
-      <div style="font-size:13px;color:#1A2230;font-weight:600;">לחצי על
-        <svg style="display:inline;vertical-align:middle;margin:0 3px;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#007AFF" stroke-width="2.2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
-        בתחתית Safari
-      </div>
-    </div>
-    <div style="display:flex;align-items:center;gap:12px;background:#F5F7FA;border-radius:12px;padding:10px 14px;">
-      <div style="width:28px;height:28px;background:#1A2230;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-weight:800;font-size:13px;color:#F5C400;">2</div>
-      <div style="font-size:13px;color:#1A2230;font-weight:600;">בחרי <span style="color:#007AFF;">"הוסף למסך הבית"</span> ← <span style="color:#007AFF;">"הוסף"</span></div>
-    </div>
-  </div>
-</div>
+<div id="root"></div>
 <script>
 window.addEventListener('DOMContentLoaded',function(){
   var sp=document.getElementById('splash');
@@ -1215,7 +1165,7 @@ function calc(t, days, married, kids, cmd, student, newBorn, special, reloc) {
       badge: tuOk ? t.tuitionPct + "% שכ'ל" : "נדרשים 50 ימים",
       summary: tuOk ? "זכאות ל-" + t.tuitionPct + "% שכ'ל — שנת תשפ'ו" : "נדרשים עוד " + (50 - days) + " ימים",
       tuitionPct: t.tuitionPct,
-      detail: "סיוע של " + t.tuitionPct + "% משכר הלימוד\nספירת ימים: 23.10.25 עד 30.9.26\nכולל מוסדות להשכלה גבוהה ומכללות טכנולוגיות\nלא ניתן לכפל עם מלגות מדינה",
+      detail: "סיוע של " + t.tuitionPct + "% משכר הלימוד\nספירת ימים: 23.10.25 עד 30.9.26\nשירות ב-2025: יסופרו רק ימים מ-23.10.25 ואילך\nכולל מוסדות להשכלה גבוהה ומכללות טכנולוגיות\nלא ניתן לכפל עם מלגות מדינה",
       use: "פנה/י למוסד הלימודים לקבלת הנחיות מימוש.",
       requiresApp: true,
       progress: Math.min(Math.round(days / 50 * 100), 100)
@@ -1999,9 +1949,20 @@ function BCard({
       fontSize: 12,
       fontWeight: 800,
       color: C.navy,
-      marginBottom: 10
+      marginBottom: 6
     }
   }, "\u05DE\u05D7\u05E9\u05D1\u05D5\u05DF \u05E9\u05DB\u05E8 \u05DC\u05D9\u05DE\u05D5\u05D3"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: C.orange || "#D97706",
+      background: "#FFFBEA",
+      borderRadius: 8,
+      padding: "7px 10px",
+      marginBottom: 10,
+      lineHeight: 1.6,
+      border: "1px solid #FDE68A"
+    }
+  }, /*#__PURE__*/React.createElement("b", null, "\u05E9\u05D9\u05DD/\u05D9 \u05DC\u05D1 \u05DC\u05E1\u05D8\u05D5\u05D3\u05E0\u05D8\u05D9\u05DD:"), " \u05D9\u05DE\u05D9 \u05E9\u05D9\u05E8\u05D5\u05EA \u05DE-2025 \u05E0\u05E1\u05E4\u05E8\u05D9\u05DD \u05E8\u05E7 \u05DE\u05EA\u05D0\u05E8\u05D9\u05DA ", /*#__PURE__*/React.createElement("b", null, "23.10.25"), " \u05D5\u05D0\u05D9\u05DC\u05DA. \u05D0\u05DD \u05E9\u05D9\u05E8\u05EA\u05EA \u05DC\u05E4\u05E0\u05D9 \u05EA\u05D0\u05E8\u05D9\u05DA \u05D6\u05D4 \u2014 \u05D4\u05DB\u05E0\u05E1/\u05D9 \u05D0\u05EA \u05DE\u05E1\u05E4\u05E8 \u05D4\u05D9\u05DE\u05D9\u05DD \u05DE-23.10.25 \u05D1\u05DC\u05D1\u05D3 \u05D1\u05D4\u05D2\u05D3\u05E8\u05D5\u05EA \u05E9\u05DC\u05DA."), /*#__PURE__*/React.createElement("div", {
     style: {
       fontSize: 12,
       color: C.gray,
@@ -3191,7 +3152,7 @@ function App() {
       fontSize: 12,
       fontWeight: 700,
       color: C.navy,
-      marginBottom: 10
+      marginBottom: 8
     }
   }, "\u05E1\u05D1\u05D1\u05D9\u05DD \u05E7\u05D5\u05D3\u05DE\u05D9\u05DD"), extraPeriods.map((p, i) => /*#__PURE__*/React.createElement("div", {
     key: i,
@@ -3259,7 +3220,18 @@ function App() {
       color: "#E05252",
       flexShrink: 0
     }
-  }, "\xD7")))), /*#__PURE__*/React.createElement("button", {
+  }, "\xD7")))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: "#92400E",
+      background: "#FFFBEA",
+      borderRadius: 8,
+      padding: "7px 10px",
+      marginBottom: 8,
+      lineHeight: 1.6,
+      border: "1px solid #FDE68A"
+    }
+  }, "\u05E1\u05D8\u05D5\u05D3\u05E0\u05D8/\u05D9\u05EA? \u05D4\u05DB\u05E0\u05E1/\u05D9 \u05D2\u05DD \u05E1\u05D1\u05D1\u05D9\u05DD \u05E9\u05D1\u05D5\u05E6\u05E2\u05D5 \u05DE-", /*#__PURE__*/React.createElement("b", null, "23.10.25"), " \u05D5\u05D0\u05D9\u05DC\u05DA"), /*#__PURE__*/React.createElement("button", {
     onClick: () => setExtra([...extraPeriods, {
       days: ""
     }]),
@@ -3551,7 +3523,7 @@ function App() {
     s: setStudent,
     ico: "grad",
     l: "סטודנט/ית",
-    d: 'סבסוד שכ"ל וסף מפקדים מופחת'
+    d: 'סבסוד שכ"ל (מ-23.10.25) · סף מפקדים מופחת'
   }, {
     v: newBorn,
     s: setNewBorn,
@@ -4120,7 +4092,6 @@ if('serviceWorker' in navigator){
   });
 }
 </script>
-
 <script>
 // iOS install prompt
 (function(){
@@ -4136,13 +4107,6 @@ if('serviceWorker' in navigator){
   }
 })();
 </script>
-  
-<style>
-/* Lift enable button above install banner */
-#enable-btn, .enable-btn, [id*="enable"][class*="btn"],
-div[id^="enable"] > button:first-child,
-#enableBtn { transition: bottom .3s ease !important; }
-</style>
 <script>
 window.addEventListener('load', function(){
   var banner = document.getElementById('install-banner');
@@ -4178,7 +4142,6 @@ window.addEventListener('load', function(){
   setTimeout(updateEnablePos, 4000);
 });
 </script>
-
 <script>
 (function(){
   function fixEnableBtn(){
@@ -4214,55 +4177,52 @@ window.addEventListener('load', function(){
   setTimeout(fixEnableBtn, 5000);
 })();
 </script>
-
 <script>
-// Force enable.co.il button to bottom-right
 (function(){
-  function fixEnablePos(){
-    // Try all possible enable widget containers
-    var selectors = [
-      '#enable-page-widget',
-      '#enable-btn',
-      '.enable-accessibility-btn',
-      '[id*="enable"][style*="fixed"]',
-      '[class*="enable"][style*="fixed"]'
-    ];
-    for(var i=0;i<selectors.length;i++){
-      var el = document.querySelector(selectors[i]);
-      if(el){
-        el.style.setProperty('bottom','16px','important');
-        el.style.setProperty('right','16px','important');
-        el.style.setProperty('left','auto','important');
-        el.style.setProperty('top','auto','important');
-        return true;
+  function fixEnable(){
+    // Find the enable widget - try every possible approach
+    var found = false;
+
+    // 1. By ID patterns
+    ['enable-page-widget','enable-btn','enableBtn','enable_widget',
+     'enable-accessibility','accessibilityWidget'].forEach(function(id){
+      var el = document.getElementById(id);
+      if(el && !found){
+        el.style.cssText += ';position:fixed!important;bottom:16px!important;right:16px!important;left:auto!important;top:auto!important;';
+        found = true;
       }
+    });
+
+    // 2. Scan ALL fixed elements for one that looks like an accessibility button
+    if(!found){
+      var all = document.querySelectorAll('body > *, body > * > *');
+      all.forEach(function(el){
+        var cs = window.getComputedStyle(el);
+        if(cs.position === 'fixed'){
+          var id = (el.id||'').toLowerCase();
+          var cls = (el.className||'').toLowerCase();
+          if(id.indexOf('enable')>=0 || cls.indexOf('enable')>=0 ||
+             id.indexOf('access')>=0 || cls.indexOf('access')>=0 ||
+             id.indexOf('widget')>=0){
+            el.style.cssText += ';bottom:16px!important;right:16px!important;left:auto!important;top:auto!important;';
+            found = true;
+          }
+        }
+      });
     }
-    // Also try shadow DOM hosts
-    var all = document.querySelectorAll('*');
-    for(var j=0;j<all.length;j++){
-      var s = all[j].style;
-      if(s && s.position === 'fixed' && all[j].id && all[j].id.indexOf('enable')>=0){
-        all[j].style.setProperty('bottom','16px','important');
-        all[j].style.setProperty('right','16px','important');
-        all[j].style.setProperty('left','auto','important');
-        all[j].style.setProperty('top','auto','important');
-        return true;
-      }
-    }
-    return false;
+    return found;
   }
 
-  // Watch for enable widget to appear
-  var obs = new MutationObserver(function(){
-    if(fixEnablePos()) obs.disconnect();
+  // Try repeatedly after page loads
+  window.addEventListener('load', function(){
+    [500,1000,1500,2000,3000].forEach(function(delay){
+      setTimeout(fixEnable, delay);
+    });
   });
-  obs.observe(document.body, {childList:true, subtree:true, attributes:true});
 
-  // Also try at intervals as fallback
-  var tries = 0;
-  var interval = setInterval(function(){
-    if(fixEnablePos() || ++tries > 20) clearInterval(interval);
-  }, 500);
+  // Also watch DOM changes
+  new MutationObserver(function(){ fixEnable(); })
+    .observe(document.documentElement, {childList:true, subtree:true});
 })();
 </script>
 <script src="https://cdn.enable.co.il/licenses/enable-L55312uwevscqlel-0526-82271/init.js"></script>
